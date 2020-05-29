@@ -16,12 +16,26 @@
     <div>
       <input type="submit" value="保存" @click="saveTodo" />
     </div>
-    <ul v-for="(list, i) in lists" v-bind:key="i">
-      <li>
-        id: {{i}}, title: {{ list.title }}{{list.body}}
-        <button @click="deleteList(i)">削除</button>
-      </li>
-    </ul>
+    <table class="table" border="1">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Title</th>
+          <th>content</th>
+          <th>del</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(list, i) in lists" v-bind:key="i">
+          <td>{{i}}</td>
+          <td>{{ list.title }}</td>
+          <td>{{list.body}}</td>
+          <td>
+            <button @click="deleteList(i)">del</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <pre>
       {{$data}}
     </pre>
@@ -64,3 +78,16 @@ export default {
   }
 };
 </script>
+
+<style>
+table {
+  border-collapse: collapse;
+}
+table th{
+  border:sodid 1px black;
+  background-color:#aaee5c;
+}
+table td{
+  border:sodid 1px black;
+}
+</style>
