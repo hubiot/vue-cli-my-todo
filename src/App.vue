@@ -19,17 +19,17 @@
     <table class="table" border="1">
       <thead>
         <tr>
-          <th>No</th>
-          <th>Title</th>
-          <th>content</th>
+          <th class="number">No</th>
+          <th class="title">Title</th>
+          <th class = "content">content</th>
           <th>del</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(list, i) in lists" v-bind:key="i">
           <td>{{i}}</td>
-          <td>{{ list.title }}</td>
-          <td>{{list.body}}</td>
+          <td><input type="text" v-model= "list.title" class="title_input" ></td>
+          <td><input type="text" v-model= "list.body" class="content_input"></td>
           <td>
             <button @click="deleteList(i)">del</button>
           </td>
@@ -80,6 +80,31 @@ export default {
 </script>
 
 <style>
+.title_input[type="text"]
+{
+  border:none;
+  outline:none;
+  width:20px;
+}
+.title_input[type="text"]:focus
+{
+  border:1px solid #ff0000;
+  outline:none;
+  width:20px;
+}
+.content_input[type="text"]
+{
+  border:none;
+  outline:none;
+  width:250px;
+}
+.content_input[type="text"]:focus
+{
+  border:1px solid #ff0000;
+  outline:none;
+  width:200px;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -89,5 +114,13 @@ table th{
 }
 table td{
   border:sodid 1px black;
+}
+.title
+{
+  width:20px;
+}
+.content
+{
+  width:250px;
 }
 </style>
