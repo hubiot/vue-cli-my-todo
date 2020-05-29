@@ -4,18 +4,21 @@
     <div>
       <label>タイトル：</label>
       <!-- <label>タイトル：</label> -->
-      <input type="text" v-model="title" placeholder="タイトル" name="title" id="title" />
+      <input type="text" v-model="title" placeholder="タイトル" />
     </div>
     <div>
       <label>内容：</label>
-      <textarea v-model="body" placeholder="内容" id="body"></textarea>
+      <input type="text" v-model="body" placeholder="内容" />
     </div>
     <div>
       <input type="submit" value="追加" @click="addList" />
     </div>
+    <div>
+      <input type="submit" value="保存" @click="saveTodo" />
+    </div>
     <ul v-for="(list, i) in lists" v-bind:key="i">
       <li>
-        id: {{i}}, title: {{ list.title }}
+        id: {{i}}, title: {{ list.title }}{{list.body}}
         <button @click="deleteList(i)">削除</button>
       </li>
     </ul>
@@ -40,25 +43,23 @@ export default {
       this.lists.push({ title: this.title, body: this.body });
       this.title = "";
       this.body = "";
-      this.saveTodo();
     },
     // リストの削除
     deleteList: function(i) {
       this.lists.splice(i, 1);
-      this.saveTodo();
     },
     //データをセーブ
-    saveTodo: function(){
-      localStorage.setItem('list_storage',JSON.stringify(this.lists));
+    saveTodo: function() {
+      localStorage.setItem("list_storage", JSON.stringify(this.lists));
     },
-    loadTodo: function(){
-      this.lists =JSON.parse(localStorage.getItem('list_storage'));
-      if(!this.lists){
+    loadTodo: function() {
+      this.lists = JSON.parse(localStorage.getItem("list_storage"));
+      if (!this.lists) {
         this.lists = [];
       }
     }
   },
-  mounted: function(){
+  mounted: function() {
     this.loadTodo();
   }
 };
